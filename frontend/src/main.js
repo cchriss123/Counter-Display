@@ -4,10 +4,28 @@ import logo from './assets/images/logo.png';
 import { EventsOn } from '../wailsjs/runtime';
 
 document.querySelector('#app').innerHTML = `
-    <img id="logo" class="logo">
-    <div class="result" id="result">Waiting for data to display...</div>
-    <div class="result" id="input">
+
+<div class="outerContainer">
+
+    <div class="desktop">
+        <div class="leftContainer">
+            <div class="containerRed"></div>
+            <div class="containerBlue"></div>
+        </div>
+        <div class="containerGreen"></div>
     </div>
+    
+
+    <div class="mobile">
+        <div class="containerRed"></div>
+        <div class="container">
+            <div class="containerBlue"></div>
+            <div class="containerGreen"></div>
+        </div>
+    </div>
+    
+    
+</div>
 `;
 document.getElementById('logo').src = logo;
 

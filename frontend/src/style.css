@@ -1,35 +1,109 @@
+/* Global Styles */
 html, body {
     margin: 0;
-    color: black; /* Change the text color to black */
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-    text-align: center;
-}
-
-@font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 400;
-    src: url("assets/fonts/nunito-v16-latin-regular.woff2") format("woff2");
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+    height: 100%;
+    width: 100%;
 }
 
 #app {
     height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-#logo {
-    display: block;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    padding: 10% 0 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+
+.outerContainer {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 10px solid black;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.result {
-    margin: 1.5rem auto;
-    line-height: 20px;
+.desktop{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.leftContainer {
+    box-sizing: border-box;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.containerRed {
+    box-sizing: border-box;
+    width: 100%;
+    height: 70%;
+    border: 10px solid red;
+    display: flex;
+    flex-wrap: wrap;
+}
+.containerBlue {
+    box-sizing: border-box;
+    width: 100%;
+    height: 30%;
+    border: 10px solid blue;
+    display: flex;
+    flex-wrap: wrap;
+}
+.containerGreen {
+    box-sizing: border-box;
+    width: 30%;
+    height: 100%;
+    border: 10px solid green;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mobile {
+    display: none;
+}
+
+@media (max-width: 1300px) {
+    .desktop {
+        display: none; /* Hide desktop layout */
+    }
+
+    .mobile {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column; /* Stack containers vertically */
+    }
+
+    .containerRed {
+        height: 50%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        height: 50%; /
+    }
+
+    .containerBlue {
+        height: 100%; /* Full height of the container */
+        width: 50%;
+        box-sizing: border-box;
+    }
+
+    .containerGreen {
+        height: 100%;
+        width: 50%;
+        box-sizing: border-box;
+    }
 }
