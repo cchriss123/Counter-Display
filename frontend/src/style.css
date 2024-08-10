@@ -72,7 +72,7 @@ html, body {
 
 @media (max-width: 1300px) {
     .desktop {
-        display: none; /* Hide desktop layout */
+        display: none;
     }
 
     .mobile {
@@ -80,7 +80,7 @@ html, body {
         width: 100%;
         height: 100%;
         display: flex;
-        flex-direction: column; /* Stack containers vertically */
+        flex-direction: column;
     }
 
     .containerRed {
@@ -96,7 +96,7 @@ html, body {
     }
 
     .containerBlue {
-        height: 100%; /* Full height of the container */
+        height: 100%;
         width: 50%;
         box-sizing: border-box;
     }

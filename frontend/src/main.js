@@ -1,7 +1,6 @@
 import './style.css';
 import { EventsOn } from '../wailsjs/runtime';
 
-// Initial HTML setup
 document.querySelector('#app').innerHTML = `
     <div class="outerContainer">
         <div class="desktop">
@@ -28,28 +27,76 @@ document.querySelector('#app').innerHTML = `
     </div>
 `;
 
-// Listen for data from the backend
+
+
 EventsOn("dataFromBackend", function(data) {
     let parsedData = JSON.parse(data);
-    let name = parsedData.name;
-    let formattedData = JSON.stringify(parsedData, null, 4);
 
-    // Update all result elements inside containerRed
-    document.querySelectorAll('.containerRed .result').forEach(resultElement => {
+    // Destructure donorZone and overall data
+    const {
+        donorZone: {
+            name = 'Unknown',
+            singles = 'N/A',
+            doubles = 'N/A',
+            triples = 'N/A',
+            quadruples = 'N/A',
+            grafts = 'N/A',
+            hairs = 'N/A',
+            hairPerCountedGraft = 'N/A',
+            area = 'N/A',
+            graftsExtractedToReachDonorDesiredCoverageValue = 'N/A',
+            graftsLeftToReachDonorDesiredCoverageValue = 'N/A'
+        } = {},
+        totalSingles = 'N/A',
+        totalDoubles = 'N/A',
+        totalTriples = 'N/A',
+        totalQuadruples = 'N/A',
+        totalGrafts = 'N/A',
+        totalHair = 'N/A',
+        totalHairPerGraftsCounted = 'N/A'
+    } = parsedData;
+
+    document.querySelectorAll('.containerRed').forEach(resultElement => {
         resultElement.innerHTML = `
             <div>
-                <p>Hello ${name}!</p>
-                <pre>${formattedData}</pre>
+                <div><strong>Zone Counts</strong></div>
+                <div>Singles: ${singles}</div>
+                <div>Doubles: ${doubles}</div>
+                <div>Triples: ${triples}</div>
+                <div>Quadruples: ${quadruples}</div>
             </div>
         `;
     });
 
-    // Update all input elements inside containerRed
-    // document.querySelectorAll('.containerRed .input').forEach(inputElement => {
-    //     inputElement.innerHTML = `
-    //         <div>Additional input or data can be placed here.</div>
-    //     `;
-    // });
+    document.querySelectorAll('.containerBlue').forEach(resultElement => {
+        resultElement.innerHTML = `
+            <div>
+                <div><strong>Zone Info</strong></div>
+                <div>Grafts count: ${grafts}</div>
+                <div>Hairs count: ${hairs}</div>
+                <div>Hair per graft: ${hairPerCountedGraft}</div>
+                <div>Area: ${area} cm²</div>
+                <div>Target: ${graftsExtractedToReachDonorDesiredCoverageValue}</div>
+                <div>Left: ${graftsLeftToReachDonorDesiredCoverageValue}</div>
+            </div>
+        `;
+    });
+
+    document.querySelectorAll('.containerGreen').forEach(resultElement => {
+        resultElement.innerHTML = `
+            <div>
+                <div><strong>Overall Info</strong></div>
+                <div>Total Singles: ${totalSingles}</div>
+                <div>Total Doubles: ${totalDoubles}</div>
+                <div>Total Triples: ${totalTriples}</div>
+                <div>Total Quads: ${totalQuadruples}</div>
+                <br>
+                <div>Total Grafts: ${totalGrafts}</div>
+                <div>Total Hair: ${totalHair}</div>
+                <div>Total Hair per Graft: ${totalHairPerGraftsCounted.toFixed(2)}</div>
+            </div>
+        `;
+    });
 
     console.log(parsedData);
 });
