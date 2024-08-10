@@ -58,12 +58,13 @@ EventsOn("dataFromBackend", function(data) {
 
     document.querySelectorAll('.containerRed').forEach(resultElement => {
         resultElement.innerHTML = `
-            <div>
-                <div><strong>Zone Counts</strong></div>
-                <div>Singles: ${singles}</div>
-                <div>Doubles: ${doubles}</div>
-                <div>Triples: ${triples}</div>
-                <div>Quadruples: ${quadruples}</div>
+            <div class="innerRed">
+                    <div class="zoneName">${name}</div>
+                    <div class="zoneName"></div>
+                    <div class="zoneCount">Singles: ${singles}</div>
+                    <div class="zoneCount">Doubles: ${doubles}</div>
+                    <div class="zoneCount">Triples: ${triples}</div>
+                    <div class="zoneCount">Quadruples: ${quadruples}</div>
             </div>
         `;
     });
