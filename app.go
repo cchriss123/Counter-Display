@@ -42,14 +42,6 @@ func (a *App) startHTTPServer() {
 
 		runtime.EventsEmit(a.ctx, "dataFromBackend", string(body))
 
-		// Parse the JSON if needed
-		var data map[string]interface{}
-		if err := json.Unmarshal(body, &data); err != nil {
-			http.Error(w, "Invalid JSON format", http.StatusBadRequest)
-			return
-		}
-
-		// Respond to the client
 		w.WriteHeader(http.StatusOK)
 		w.Header().Set("Content-Type", "application/json")
 		response := map[string]string{"status": "success"}

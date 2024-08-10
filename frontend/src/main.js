@@ -16,9 +16,18 @@ let resultElement = document.getElementById("result");
 // Listen for data from the backend
 EventsOn("dataFromBackend", function(data) {
     let parsedData = JSON.parse(data);
+    let name = parsedData.name;
+
 
     let formattedData = JSON.stringify(parsedData, null, 4);
 
-    resultElement.innerHTML = `<pre>${formattedData}</pre>`;
+
+    resultElement.innerHTML = `
+        <div>
+            <p>Hello ${name}!</p>
+            <pre>
+                    ${formattedData}
+            </pre>
+        </div>`;
     console.log(parsedData);
 });
