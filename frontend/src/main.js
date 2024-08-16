@@ -3,6 +3,7 @@ import { EventsOn } from '../wailsjs/runtime';
 
 document.querySelector('#app').innerHTML = `
     <div class="outerContainer">
+        <div class="topContainer"></div>
         <div class="desktop">
             <div class="leftContainer">
                 <div class="containerRed">
@@ -56,11 +57,17 @@ EventsOn("dataFromBackend", function(data) {
         totalHairPerGraftsCounted = 'N/A'
     } = parsedData;
 
+    document.querySelector('.topContainer').innerHTML = `
+        <div class="innerTop">${name}</div> 
+        <div class="innerTop">${name}</div> 
+        <div class="innerTop">${name}</div> 
+    `;
+
+
+
     document.querySelectorAll('.containerRed').forEach(resultElement => {
         resultElement.innerHTML = `
             <div class="innerRed">
-                    <div class="zoneName">${name}</div>
-                    <div class="zoneName"></div>
                     <div class="zoneCount">Singles: ${singles}</div>
                     <div class="zoneCount">Doubles: ${doubles}</div>
                     <div class="zoneCount">Triples: ${triples}</div>
