@@ -30,12 +30,23 @@ document.querySelector('#app').innerHTML = `
     </div>
 `;
 
+let hasStarter = false;
+let timer = 0;
+
 
 
 EventsOn("dataFromBackend", function(data) {
     let parsedData = JSON.parse(data);
 
-    // Destructure donorZone and overall data
+    if (hasStarter === false) {
+        hasStarter = true;
+
+        setInterval(() => {
+            timer++;
+            updateTimer(parsedData);
+        }, 1000);
+    }
+
     const {
         donorZone: {
             name = 'Unknown',
@@ -59,11 +70,21 @@ EventsOn("dataFromBackend", function(data) {
         totalHairPerGraftsCounted = 'N/A'
     } = parsedData;
 
-    document.querySelector('.topContainer').innerHTML = `
+
+    function updateTimer(parsedData) {
+        document.querySelector('.topContainer').innerHTML = `
         <div class="innerTop">${name}</div> 
-        <div class="innerTop">${name}</div> 
-        <div class="innerTop">${name}</div> 
+        <div class="innerTop">${formatTime(timer)}</div> 
+        <div class="innerTop">${new Date().toLocaleTimeString()}</div> 
     `;
+    }
+
+    function formatTime(seconds) {
+        const hrs = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${hrs.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
 
 
 
