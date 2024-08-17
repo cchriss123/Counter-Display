@@ -21,7 +21,8 @@ html, body {
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    border: 10px solid Yellow;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
 .outerContainer {
@@ -101,13 +102,17 @@ html, body {
 }
 
 .innerTop {
-    border: 1px solid black;
     width: calc(100% / 3);
     font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    border-right: 1px solid black;
+}
+
+.innerTop:last-child {
+    border-right: none;
 }
 
 
