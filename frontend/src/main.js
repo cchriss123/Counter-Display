@@ -32,6 +32,7 @@ document.querySelector('#app').innerHTML = `
 
 let hasStarter = false;
 let timer = 0;
+let activeName = "";
 
 EventsOn("dataFromBackend", function(data) {
     let parsedData = JSON.parse(data);
@@ -44,6 +45,9 @@ EventsOn("dataFromBackend", function(data) {
             updateTimer(parsedData);
         }, 1000);
     }
+    console.log(parsedData)
+
+
 
     const {
         donorZone: {
@@ -68,12 +72,14 @@ EventsOn("dataFromBackend", function(data) {
         totalHairPerGraftsCounted = 'N/A'
     } = parsedData;
 
+    activeName = name;
+
 
     function updateTimer(parsedData) {
         document.querySelector('.topContainer').innerHTML = `
-        <div class="innerTop">${name}</div> 
-        <div class="innerTop">${formatTime(timer)}</div> 
-        <div class="innerTop">${new Date().toLocaleTimeString()}</div> 
+            <div class="innerTop">${activeName}</div> 
+            <div class="innerTop">${formatTime(timer)}</div> 
+            <div class="innerTop">${new Date().toLocaleTimeString()}</div> 
     `;
     }
 
@@ -87,10 +93,20 @@ EventsOn("dataFromBackend", function(data) {
     document.querySelectorAll('.containerRed').forEach(resultElement => {
         resultElement.innerHTML = `
             <div class="innerRed">
-                    <div class="zoneCount">Singles: ${singles}</div>
-                    <div class="zoneCount">Doubles: ${doubles}</div>
-                    <div class="zoneCount">Triples: ${triples}</div>
-                    <div class="zoneCount">Quadruples: ${quadruples}</div>
+                <div class="zoneKey">Singles</div>
+                <div class="zoneValue">${singles}</div>
+            </div>
+            <div class="innerRed">
+                <div class="zoneKey">Doubles</div>
+                <div class="zoneValue">${doubles}</div>
+            </div>
+            <div class="innerRed">
+                <div class="zoneKey">Triples</div>
+                <div class="zoneValue">${triples}</div>       
+            </div>
+            <div class="innerRed">
+                <div class="zoneKey">Quadruples</div>
+                <div class="zoneValue">${quadruples}</div>  
             </div>
         `;
     });
@@ -125,5 +141,4 @@ EventsOn("dataFromBackend", function(data) {
         `;
     });
 
-    console.log(parsedData);
 });
