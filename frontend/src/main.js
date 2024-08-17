@@ -94,10 +94,13 @@ EventsOn("dataFromBackend", function(data) {
         `;
     });
 
-    document.querySelectorAll('.containerBlue').forEach(resultElement => {
-        resultElement.innerHTML = `
+    function updateContainerBlue() {
+        document.querySelectorAll('.containerBlue').forEach(resultElement => {
+            const isWideScreen = window.innerWidth > 1300;
+            resultElement.innerHTML = `
             <div><strong>Zone Info</strong></div>
             <div></div>
+            ${isWideScreen ? '<br><div></div>' : ''}
             <div>Grafts count: </div>
             <div>${grafts}</div>
             <div>Hairs count:</div>
@@ -106,16 +109,17 @@ EventsOn("dataFromBackend", function(data) {
             <div>${hairPerCountedGraft.toFixed(2)}</div>
             <div>Area:</div>
             <div>${area}</div>
-            <br>
-            <div></div>
-    
+            ${isWideScreen ? '' : '<br><div></div>'}
             <div>Target: </div>
             <div>${graftsExtractedToReachDonorDesiredCoverageValue}</div>
             <div>Left: </div>
             <div>${graftsLeftToReachDonorDesiredCoverageValue}</div>
             <br>
         `;
-    });
+        });
+    }
+    updateContainerBlue();
+    window.addEventListener('resize', updateContainerBlue);
 
     document.querySelectorAll('.containerGreen').forEach(resultElement => {
         resultElement.innerHTML = `
@@ -142,7 +146,7 @@ EventsOn("dataFromBackend", function(data) {
     });
 
 
-    function updateTimer(parsedData) {
+    function updateTimer() {
         document.querySelector('.topContainer').innerHTML = `
             <div class="innerTop">${activeName}</div> 
             <div class="innerTop">${formatTime(timer)}</div> 
