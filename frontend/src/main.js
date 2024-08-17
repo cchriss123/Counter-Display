@@ -3,11 +3,13 @@ import { EventsOn } from '../wailsjs/runtime';
 
 document.querySelector('#app').innerHTML = `
     <div class="outerContainer">
-        <div class="topContainer"></div>
+        <div class="topContainer">
+            <div class="result">Waiting for data to display...</div>
+        </div>
         <div class="desktop">
             <div class="leftContainer">
                 <div class="containerRed">
-                    <div class="result">Waiting for data to display...</div>
+                
                     <div class="input"></div>
                 </div>
                 <div class="containerBlue"></div>
@@ -17,7 +19,6 @@ document.querySelector('#app').innerHTML = `
         
         <div class="mobile">
             <div class="containerRed">
-                <div class="result">Waiting for data to display...</div>
                 <div class="input"></div>
             </div>
             <div class="container">
@@ -25,15 +26,12 @@ document.querySelector('#app').innerHTML = `
                 <div class="containerGreen"></div>
             </div>
         </div>
-          <div class="marginDiv"></div>
       
     </div>
 `;
 
 let hasStarter = false;
 let timer = 0;
-
-
 
 EventsOn("dataFromBackend", function(data) {
     let parsedData = JSON.parse(data);
@@ -85,8 +83,6 @@ EventsOn("dataFromBackend", function(data) {
         const secs = seconds % 60;
         return `${hrs.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }
-
-
 
     document.querySelectorAll('.containerRed').forEach(resultElement => {
         resultElement.innerHTML = `
