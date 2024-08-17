@@ -56,16 +56,17 @@ html, body {
 .containerRed {
     box-sizing: border-box;
     width: 100%;
-    height: 60%;
-    border: 10px solid red;
+    height: 55%;
+    border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
+    border-radius: 10px;
 }
 
 .containerBlue {
     box-sizing: border-box;
     width: 100%;
-    height: 40%;
+    height: 45%;
     border: 10px solid blue;
     display: flex;
     flex-wrap: wrap;
@@ -81,24 +82,18 @@ html, body {
     flex-wrap: wrap;
 }
 
-
-
 .innerRed {
     width: 50%;
     box-sizing: border-box;
-    border: 1px solid black;
     align-items: center;
     display: flex;
     font-size: 40px;
-    font-weight: 500;
     color: #333;
 }
 .zoneKey {
-    border: 1px solid black;
     padding: 10px;
     margin-left: 10%;
-    width: 50%;
-
+    width: 40%;
 }
 
 .zoneValue {
@@ -106,20 +101,34 @@ html, body {
     padding: 10px;
     margin: auto;
     width: 25%;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
 }
+
 
 .innerTop {
     width: calc(100% / 3);
-    font-size: 30px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     border-right: 1px solid black;
+    padding: 10px;
 }
 
 .innerTop:last-child {
     border-right: none;
+}
+
+.result {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 

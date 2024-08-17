@@ -47,8 +47,6 @@ EventsOn("dataFromBackend", function(data) {
     }
     console.log(parsedData)
 
-
-
     const {
         donorZone: {
             name = 'Unknown',
@@ -73,22 +71,7 @@ EventsOn("dataFromBackend", function(data) {
     } = parsedData;
 
     activeName = name;
-
-
-    function updateTimer(parsedData) {
-        document.querySelector('.topContainer').innerHTML = `
-            <div class="innerTop">${activeName}</div> 
-            <div class="innerTop">${formatTime(timer)}</div> 
-            <div class="innerTop">${new Date().toLocaleTimeString()}</div> 
-    `;
-    }
-
-    function formatTime(seconds) {
-        const hrs = Math.floor(seconds / 3600);
-        const minutes = Math.floor((seconds % 3600) / 60);
-        const secs = seconds % 60;
-        return `${hrs.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    }
+    updateTimer();
 
     document.querySelectorAll('.containerRed').forEach(resultElement => {
         resultElement.innerHTML = `
@@ -105,7 +88,7 @@ EventsOn("dataFromBackend", function(data) {
                 <div class="zoneValue">${triples}</div>       
             </div>
             <div class="innerRed">
-                <div class="zoneKey">Quadruples</div>
+                <div class="zoneKey">Quads</div>
                 <div class="zoneValue">${quadruples}</div>  
             </div>
         `;
@@ -140,5 +123,21 @@ EventsOn("dataFromBackend", function(data) {
             </div>
         `;
     });
+
+
+    function updateTimer(parsedData) {
+        document.querySelector('.topContainer').innerHTML = `
+            <div class="innerTop">${activeName}</div> 
+            <div class="innerTop">${formatTime(timer)}</div> 
+            <div class="innerTop">${new Date().toLocaleTimeString()}</div> 
+    `;
+    }
+
+    function formatTime(seconds) {
+        const hrs = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${hrs.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
 
 });
