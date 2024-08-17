@@ -150,9 +150,9 @@ EventsOn("dataFromBackend", function(data) {
 
     function updateTimer() {
         document.querySelector('.topContainer').innerHTML = `
-            <div class="innerTop">${activeName}</div> 
-            <div class="innerTop">${formatTime(timer)}</div> 
-            <div class="innerTop">${new Date().toLocaleTimeString()}</div> 
+            <div class="innerTop">Active zone: ${activeName}</div> 
+            <div class="innerTop">Time elapsed: ${formatTime(timer)}</div>
+            <div class="innerTop">Last updated: ${new Date().toLocaleTimeString()}</div> 
     `;
     }
 
@@ -162,5 +162,6 @@ EventsOn("dataFromBackend", function(data) {
         const secs = seconds % 60;
         return `${hrs.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }
+
 
 });
