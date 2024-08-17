@@ -94,6 +94,9 @@ EventsOn("dataFromBackend", function(data) {
         `;
     });
 
+    updateContainerBlue();
+    window.addEventListener('resize', updateContainerBlue);
+
     function updateContainerBlue() {
         document.querySelectorAll('.containerBlue').forEach(resultElement => {
             const isWideScreen = window.innerWidth > 1300;
@@ -118,8 +121,7 @@ EventsOn("dataFromBackend", function(data) {
         `;
         });
     }
-    updateContainerBlue();
-    window.addEventListener('resize', updateContainerBlue);
+
 
     document.querySelectorAll('.containerGreen').forEach(resultElement => {
         resultElement.innerHTML = `
