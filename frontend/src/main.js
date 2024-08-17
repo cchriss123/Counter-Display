@@ -96,15 +96,24 @@ EventsOn("dataFromBackend", function(data) {
 
     document.querySelectorAll('.containerBlue').forEach(resultElement => {
         resultElement.innerHTML = `
-            <div>
-                <div><strong>Zone Info</strong></div>
-                <div>Grafts count: ${grafts}</div>
-                <div>Hairs count: ${hairs}</div>
-                <div>Hair per graft: ${hairPerCountedGraft}</div>
-                <div>Area: ${area} cm²</div>
-                <div>Target: ${graftsExtractedToReachDonorDesiredCoverageValue}</div>
-                <div>Left: ${graftsLeftToReachDonorDesiredCoverageValue}</div>
-            </div>
+            <div><strong>Zone Info</strong></div>
+            <div></div>
+            <div>Grafts count: </div>
+            <div>${grafts}</div>
+            <div>Hairs count:</div>
+            <div>${hairs}</div>
+            <div>Hair per graft:</div>
+            <div>${hairPerCountedGraft.toFixed(2)}</div>
+            <div>Area:</div>
+            <div>${area}</div>
+            <br>
+            <div></div>
+    
+            <div>Target: </div>
+            <div>${graftsExtractedToReachDonorDesiredCoverageValue}</div>
+            <div>Left: </div>
+            <div>${graftsLeftToReachDonorDesiredCoverageValue}</div>
+            <br>
         `;
     });
 
@@ -118,13 +127,17 @@ EventsOn("dataFromBackend", function(data) {
             <div>${totalDoubles}</div>
             <div>Total Triples: </div>
             <div>${totalTriples}</div>
-            <div>Total Quads: ${totalQuadruples}</div>
+            <div>Total Quads: </div>
             <div>${totalQuadruples}</div>
+            <br>
             <div></div>
-            <div></div>
-            <div>Total Grafts: ${totalGrafts}</div>
-            <div>Total Hair: ${totalHair}</div>
-            <div>Total Hair per Graft: ${totalHairPerGraftsCounted.toFixed(2)}</div>
+            <div>Total Grafts: </div>
+            <div>${totalGrafts}</div>
+            <div>Total Hair: </div>
+            <div>${totalHair}</div>
+            <div>Total Hair per Graft: </div>
+            <div>${totalHairPerGraftsCounted.toFixed(2)}</div>
+
         `;
     });
 
