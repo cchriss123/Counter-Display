@@ -110,17 +110,21 @@ EventsOn("dataFromBackend", function(data) {
 
     document.querySelectorAll('.containerGreen').forEach(resultElement => {
         resultElement.innerHTML = `
-            <div>
-                <div><strong>Overall Info</strong></div>
-                <div>Total Singles: ${totalSingles}</div>
-                <div>Total Doubles: ${totalDoubles}</div>
-                <div>Total Triples: ${totalTriples}</div>
-                <div>Total Quads: ${totalQuadruples}</div>
-                <br>
-                <div>Total Grafts: ${totalGrafts}</div>
-                <div>Total Hair: ${totalHair}</div>
-                <div>Total Hair per Graft: ${totalHairPerGraftsCounted.toFixed(2)}</div>
-            </div>
+            <div><strong>Overall Info</strong></div>
+            <div></div>
+            <div>Total Singles: </div>
+            <div>${totalSingles}</div>
+            <div>Total Doubles: </div>
+            <div>${totalDoubles}</div>
+            <div>Total Triples: </div>
+            <div>${totalTriples}</div>
+            <div>Total Quads: ${totalQuadruples}</div>
+            <div>${totalQuadruples}</div>
+            <div></div>
+            <div></div>
+            <div>Total Grafts: ${totalGrafts}</div>
+            <div>Total Hair: ${totalHair}</div>
+            <div>Total Hair per Graft: ${totalHairPerGraftsCounted.toFixed(2)}</div>
         `;
     });
 

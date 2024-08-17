@@ -78,8 +78,8 @@ html, body {
     width: calc(100% / 3);
     height: 100%;
     border: 10px solid green;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .innerRed {
