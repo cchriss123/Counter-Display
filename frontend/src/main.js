@@ -166,11 +166,12 @@ EventsOn("dataFromBackend", function(data) {
 
 });
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "f" || event.key === "F") {
-        EventsEmit("toggle-fullscreen");
+
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'F11') {
+        event.preventDefault();
+        EventsEmit('toggle-fullscreen');
     }
 });
-
-
 
