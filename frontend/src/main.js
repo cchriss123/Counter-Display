@@ -1,5 +1,6 @@
 import './style.css';
-import { EventsOn } from '../wailsjs/runtime';
+import { EventsOn, EventsEmit } from '../wailsjs/runtime';
+
 
 document.querySelector('#app').innerHTML = `
     <div class="outerContainer">
@@ -163,5 +164,13 @@ EventsOn("dataFromBackend", function(data) {
         return `${hrs.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }
 
-
 });
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "f" || event.key === "F") {
+        EventsEmit("toggle-fullscreen");
+    }
+});
+
+
+

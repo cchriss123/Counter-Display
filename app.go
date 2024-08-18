@@ -10,15 +10,30 @@ import (
 )
 
 type App struct {
-	ctx context.Context
+	ctx          context.Context
+	isFullscreen bool
 }
 
 func NewApp() *App {
 	return &App{}
 }
 
+func (a *App) ToggleFullScreen() {
+	if a.isFullscreen {
+		runtime.WindowUnfullscreen(a.ctx)
+	} else {
+		runtime.WindowFullscreen(a.ctx)
+	}
+	a.isFullscreen = !a.isFullscreen
+}
+
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+
+	runtime.EventsOn(a.ctx, "toggle-fullscreen", func(...interface{}) {
+		a.ToggleFullScreen()
+	})
+
 	go a.startHTTPServer()
 }
 
