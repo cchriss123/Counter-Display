@@ -11,18 +11,6 @@ import (
 //go:embed all:frontend/dist
 var assets embed.FS
 
-// Create the app menu
-func createAppMenu(app *App) *menu.Menu {
-	appMenu := menu.NewMenu()
-
-	viewMenu := appMenu.AddSubmenu("View")
-	viewMenu.AddText("Toggle Fullscreen", nil, func(_ *menu.CallbackData) {
-		app.ToggleFullScreen()
-	})
-
-	return appMenu
-}
-
 func main() {
 	app := NewApp()
 
@@ -44,4 +32,15 @@ func main() {
 	if err != nil {
 		println("Error:", err.Error())
 	}
+}
+
+func createAppMenu(app *App) *menu.Menu {
+	appMenu := menu.NewMenu()
+
+	viewMenu := appMenu.AddSubmenu("View")
+	viewMenu.AddText("Toggle Fullscreen", nil, func(_ *menu.CallbackData) {
+		app.ToggleFullScreen()
+	})
+
+	return appMenu
 }
