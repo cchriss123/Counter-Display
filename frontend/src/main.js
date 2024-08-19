@@ -9,7 +9,7 @@ document.querySelector('#app').innerHTML = `
         </div>
         <div class="desktop">
             <div class="leftContainer">
-                <div class="containerRed">
+                <div class="zoneCountContainer">
                 
                     <div class="input"></div>
                 </div>
@@ -19,7 +19,7 @@ document.querySelector('#app').innerHTML = `
         </div>
         
         <div class="mobile">
-            <div class="containerRed">
+            <div class="zoneCountContainer">
                 <div class="input"></div>
             </div>
             <div class="container">
@@ -74,21 +74,21 @@ EventsOn("dataFromBackend", function(data) {
     activeName = name;
     updateTimer();
 
-    document.querySelectorAll('.containerRed').forEach(resultElement => {
+    document.querySelectorAll('.zoneCountContainer').forEach(resultElement => {
         resultElement.innerHTML = `
-            <div class="innerRed">
+            <div class="innerZoneCountContainer">
                 <div class="zoneKey">Singles</div>
                 <div class="zoneValue">${singles}</div>
             </div>
-            <div class="innerRed">
+            <div class="innerZoneCountContainer">
                 <div class="zoneKey">Doubles</div>
                 <div class="zoneValue">${doubles}</div>
             </div>
-            <div class="innerRed">
+            <div class="innerZoneCountContainer">
                 <div class="zoneKey">Triples</div>
                 <div class="zoneValue">${triples}</div>       
             </div>
-            <div class="innerRed">
+            <div class="innerZoneCountContainer">
                 <div class="zoneKey">Quads</div>
                 <div class="zoneValue">${quadruples}</div>  
             </div>
@@ -151,9 +151,9 @@ EventsOn("dataFromBackend", function(data) {
 
     function updateTimer() {
         document.querySelector('.topContainer').innerHTML = `
-            <div class="innerTop">${activeName}</div> 
-            <div class="innerTop">Timer ${formatTime(timer)}</div>
-            <div class="innerTop">${new Date().toLocaleTimeString()}</div> 
+            <div class="innerTop">Active zone ${activeName}</div> 
+            <div class="innerTop">Time elapsed ${formatTime(timer)}</div>
+            <div class="innerTop">Time of day: ${new Date().toLocaleTimeString()}</div> 
     `;
     }
 
