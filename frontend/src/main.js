@@ -151,9 +151,9 @@ EventsOn("dataFromBackend", function(data) {
 
     function updateTimer() {
         document.querySelector('.topContainer').innerHTML = `
-            <div class="innerTop">Active zone: ${activeName}</div> 
-            <div class="innerTop">Time elapsed: ${formatTime(timer)}</div>
-            <div class="innerTop">Last updated: ${new Date().toLocaleTimeString()}</div> 
+            <div class="innerTop">${activeName}</div> 
+            <div class="innerTop">Timer ${formatTime(timer)}</div>
+            <div class="innerTop">${new Date().toLocaleTimeString()}</div> 
     `;
     }
 
