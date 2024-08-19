@@ -10,12 +10,11 @@ document.querySelector('#app').innerHTML = `
         <div class="desktop">
             <div class="leftContainer">
                 <div class="zoneCountContainer">
-                
                     <div class="input"></div>
                 </div>
-                <div class="containerBlue"></div>
+                <div class="zoneInfoContainer"></div>
             </div>
-            <div class="containerGreen"></div>
+            <div class="overallInfoContainer"></div>
         </div>
         
         <div class="mobile">
@@ -23,8 +22,8 @@ document.querySelector('#app').innerHTML = `
                 <div class="input"></div>
             </div>
             <div class="container">
-                <div class="containerBlue"></div>
-                <div class="containerGreen"></div>
+                <div class="zoneInfoContainer"></div>
+                <div class="overallInfoContainer"></div>
             </div>
         </div>
       
@@ -99,7 +98,7 @@ EventsOn("dataFromBackend", function(data) {
     window.addEventListener('resize', updateContainerBlue);
 
     function updateContainerBlue() {
-        document.querySelectorAll('.containerBlue').forEach(resultElement => {
+        document.querySelectorAll('.zoneInfoContainer').forEach(resultElement => {
             const isWideScreen = window.innerWidth > 1300;
             resultElement.innerHTML = `
             <div><strong>Zone Info</strong></div>
@@ -123,8 +122,7 @@ EventsOn("dataFromBackend", function(data) {
         });
     }
 
-
-    document.querySelectorAll('.containerGreen').forEach(resultElement => {
+    document.querySelectorAll('.overallInfoContainer').forEach(resultElement => {
         resultElement.innerHTML = `
             <div><strong>Overall Info</strong></div>
             <div></div>
@@ -153,7 +151,7 @@ EventsOn("dataFromBackend", function(data) {
         document.querySelector('.topContainer').innerHTML = `
             <div class="innerTop">Active zone ${activeName}</div> 
             <div class="innerTop">Time elapsed ${formatTime(timer)}</div>
-            <div class="innerTop">Time of day: ${new Date().toLocaleTimeString()}</div> 
+            <div class="innerTop">Time of day ${new Date().toLocaleTimeString()}</div> 
     `;
     }
 

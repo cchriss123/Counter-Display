@@ -67,7 +67,7 @@ html, body {
     background-color: white;
 }
 
-.containerBlue {
+.zoneInfoContainer {
     height: 45%;
     width: 100%;
     box-sizing: border-box;
@@ -81,7 +81,7 @@ html, body {
     background-color: white;
 }
 
-.containerGreen {
+.overallInfoContainer {
     box-sizing: border-box;
     width: calc(100% / 3 - 15px);
     height: 100%;
@@ -179,13 +179,13 @@ html, body {
         gap: 20px;
     }
 
-    .containerBlue {
+    .zoneInfoContainer {
         height: 100%;
         width: 50%;
         grid-template-columns: 3fr 1fr;
     }
 
-    .containerGreen {
+    .overallInfoContainer {
         height: 100%;
         width: 50%;
         box-sizing: border-box;
@@ -200,7 +200,7 @@ html, body {
         font-size: 25px;
     }
 
-    .containerBlue, .containerGreen {
+    .zoneInfoContainer, .overallInfoContainer {
         font-size: 15px;
     }
 
