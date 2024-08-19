@@ -163,15 +163,13 @@ EventsOn("dataFromBackend", function(data) {
         const secs = seconds % 60;
         return `${hrs.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }
-
 });
 
-
-
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'F11') {
+    if (event.key === 'f' || event.key === 'F') {
         event.preventDefault();
         EventsEmit('toggle-fullscreen');
     }
 });
+
 
