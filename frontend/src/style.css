@@ -191,3 +191,28 @@ html, body {
         box-sizing: border-box;
     }
 }
+@media (max-height: 900px) {
+    body {
+        font-size: 14px;
+    }
+
+    .containerRed {
+        font-size: 25px;
+    }
+
+    .containerBlue, .containerGreen {
+        font-size: 15px;
+    }
+
+    .innerRed {
+        font-size: 25px;
+    }
+
+    .innerTop {
+        font-size: 10px;
+    }
+
+    .result {
+        font-size: 10px; /* Adjust this value as needed */
+    }
+}
