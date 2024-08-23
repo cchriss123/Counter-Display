@@ -143,26 +143,6 @@ EventsOn("dataFromBackend", function(data) {
         });
     }
 
-
-/*
-    <div class="white"><strong>Zone Info</strong></div>
-    <div class="white"></div>
-    <div class="blueLeft">Grafts count: </div>
-    <div class="blueRight">${grafts}</div>
-    <div class="white">Hairs count:</div>
-    <div class="white">${hairs}</div>
-    <div class="blueLeft">Hair per graft:</div>
-    <div class="blueRight">${hairPerCountedGraft.toFixed(2)}</div>
-    <div class="white">Area:</div>
-    <div class="white">${area}</div>
-    <div>Target: </div>
-    <div>${graftsExtractedToReachDonorDesiredCoverageValue}</div>
-    <div>Left: </div>
-    <div>${graftsLeftToReachDonorDesiredCoverageValue}</div>
-    <br>
-    */
-
-
     document.querySelectorAll('.overallInfoContainer').forEach(resultElement => {
         resultElement.innerHTML = `
             <div class="white"><strong>Overall Info</strong></div>
