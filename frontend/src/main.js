@@ -10,6 +10,7 @@ document.querySelector('#app').innerHTML = `
         <div class="desktop">
             <div class="leftContainer">
                 <div class="zoneCountContainer">
+
                     <div class="input"></div>
                 </div>
                 <div class="zoneInfoContainer"></div>
@@ -73,9 +74,16 @@ EventsOn("dataFromBackend", function(data) {
     activeName = name;
     updateTimer();
 
+
     document.querySelectorAll('.zoneCountContainer').forEach(resultElement => {
         resultElement.innerHTML = `
+
+            <div class="innerZoneCountContainerWide">
+                    <div class="activeZone">${activeName}</div>
+            </div>
+
             <div class="innerZoneCountContainer">
+            
                 <div class="zoneKey">Singles</div>
                 <div class="zoneValue">${singles}</div>
             </div>
@@ -123,9 +131,9 @@ EventsOn("dataFromBackend", function(data) {
                 `
                 :
                 `<div class="white"><strong>Zone Info</strong></div>
-                <div class="white"></div>
-                <div class="blueLeft">Grafts count: </div>
-                <div class="blueRight">${grafts}</div>
+                <div class="white" ></div>
+                <div class="blueLeft" ><strong>Grafts count: </strong></div>
+                <div class="blueRight"><strong>${grafts}</strong></div>
                 <div class="white">Hairs count:</div>
                 <div class="white">${hairs}</div>
                 <div class="blueLeft">Hair per graft:</div>
@@ -147,6 +155,20 @@ EventsOn("dataFromBackend", function(data) {
         resultElement.innerHTML = `
             <div class="white"><strong>Overall Info</strong></div>
             <div class="white"></div>
+            
+            <div class="blueLeft"><strong>Total grafts: </strong></div>
+            <div class="blueRight"><strong>${totalGrafts}</strong></div>
+            <div class="white">Total hair: </div>
+            <div class="white">${totalHair}</div>
+            <div class="blueLeft">Hair per graft: </div>
+            <div class="blueRight">${totalHairPerGraftsCounted.toFixed(2)}</div>
+            
+            
+           
+
+            <div class="white"><br></div>
+            <div class="white"></div>
+            
             <div class="blueLeft">Total singles: </div>
             <div class="blueRight">${totalSingles}</div>
             <div class="white">Total doubles: </div>
@@ -155,26 +177,16 @@ EventsOn("dataFromBackend", function(data) {
             <div class="blueRight">${totalTriples}</div>
             <div class="white">Total quads: </div>
             <div class="white">${totalQuadruples}</div>
-            
-          
-            <div class="blueLeft"><br></div>
-            <div class="blueRight"></div>
-            <div class="white">Total grafts: </div>
-            <div class="white">${totalGrafts}</div>
-            <div class="blueLeft">Total hair: </div>
-            <div class="blueRight">${totalHair}</div>
-            <div class="white">Hair per graft: </div>
-            <div class="white">${totalHairPerGraftsCounted.toFixed(2)}</div>
+           
+
 
         `;
     });
 
-
     function updateTimer() {
         document.querySelector('.topContainer').innerHTML = `
-            <div class="innerTop">Active zone: ${activeName}</div> 
-            <div class="innerTop">Time elapsed: ${formatTime(timer)}</div>
-            <div class="innerTop">Time of day: ${new Date().toLocaleTimeString()}</div> 
+            <div class="innerTopLeft">Duration: ${formatTime(timer)}</div>
+            <div class="innerTopRight">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
     `;
     }
 
