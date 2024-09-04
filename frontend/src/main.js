@@ -162,9 +162,6 @@ EventsOn("dataFromBackend", function(data) {
             <div class="white">${totalHair}</div>
             <div class="blueLeft">Hair per graft: </div>
             <div class="blueRight">${totalHairPerGraftsCounted.toFixed(2)}</div>
-            
-            
-           
 
             <div class="white"><br></div>
             <div class="white"></div>
@@ -177,9 +174,6 @@ EventsOn("dataFromBackend", function(data) {
             <div class="blueRight">${totalTriples}</div>
             <div class="white">Total quads: </div>
             <div class="white">${totalQuadruples}</div>
-           
-
-
         `;
     });
 
