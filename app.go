@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"io"
-	"net/http"
+	"net"
 )
 
 type App struct {
@@ -34,40 +34,64 @@ func (a *App) startup(ctx context.Context) {
 		a.ToggleFullScreen()
 	})
 
-	go a.startHTTPServer()
+	go a.startTCPServer()
 }
 
-func (a *App) startHTTPServer() {
-	http.HandleFunc("/api/counter", func(w http.ResponseWriter, r *http.Request) {
-
-		if r.Method != http.MethodPost {
-			http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
-			return
-		}
-
-		body, err := io.ReadAll(r.Body)
+func (a *App) startTCPServer() {
+	listener, err := net.Listen("tcp", ":8080")
+	if err != nil {
+		fmt.Println("Error starting TCP server:", err)
+		return
+	}
+	defer func(listener net.Listener) {
+		err := listener.Close()
 		if err != nil {
-			http.Error(w, "Unable to read body", http.StatusBadRequest)
-			return
+			fmt.Println("Error closing listener:", err)
 		}
+	}(listener)
 
-		if err := r.Body.Close(); err != nil {
-			fmt.Println("Error closing request body:", err)
-		}
+	fmt.Println("TCP server started on port 8080")
 
-		runtime.EventsEmit(a.ctx, "dataFromBackend", string(body))
-
-		w.WriteHeader(http.StatusOK)
-		w.Header().Set("Content-Type", "application/json")
-		response := map[string]string{"status": "success"}
-		err = json.NewEncoder(w).Encode(response)
+	for {
+		conn, err := listener.Accept()
 		if err != nil {
-			return
+			fmt.Println("Error accepting connection:", err)
+			continue
 		}
-	})
 
-	fmt.Println("Starting server at port 8080")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		fmt.Println("Failed to start server:", err)
+		go a.handleConnection(conn)
+	}
+}
+
+func (a *App) handleConnection(conn net.Conn) {
+	defer func(conn net.Conn) {
+		err := conn.Close()
+		if err != nil {
+			fmt.Println("Error closing connection:", err)
+		}
+	}(conn)
+
+	body, err := io.ReadAll(conn)
+	if err != nil {
+		fmt.Println("Unable to read body:", err)
+		return
+	}
+
+	message := string(body)
+	fmt.Println("Received message:", message)
+
+	runtime.EventsEmit(a.ctx, "dataFromBackend", message)
+
+	response := map[string]string{"status": "success"}
+	responseData, err := json.Marshal(response)
+	if err != nil {
+		fmt.Println("Error encoding response:", err)
+		return
+	}
+
+	_, err = conn.Write(responseData)
+	if err != nil {
+		fmt.Println("Error writing to connection:", err)
+		return
 	}
 }
