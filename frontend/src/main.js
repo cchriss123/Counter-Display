@@ -55,12 +55,12 @@ EventsOn("dataFromBackend", function(data) {
             doubles = 'N/A',
             triples = 'N/A',
             quadruples = 'N/A',
-            grafts = 'N/A',
-            hairs = 'N/A',
+            graftsCounted = 'N/A',
+            hairsCounted = 'N/A',
             hairPerCountedGraft = 'N/A',
             area = 'N/A',
-            graftsExtractedToReachDonorDesiredCoverageValue = 'N/A',
-            graftsLeftToReachDonorDesiredCoverageValue = 'N/A'
+            graftsToExtract = 'N/A',
+            graftsToExtractLeft = 'N/A'
         } = {},
         totalSingles = 'N/A',
         totalDoubles = 'N/A',
@@ -116,26 +116,26 @@ EventsOn("dataFromBackend", function(data) {
                 <div></div>
                 <div><br></div>
                 <div class="blueLeft">Grafts count: </div>
-                <div class="blueRight">${grafts}</div>
+                <div class="blueRight">${graftsCounted}</div>
                 <div class="white">Hairs count:</div>
-                <div class="white">${hairs}</div>
+                <div class="white">${hairsCounted}</div>
                 <div class="white">Hair per graft:</div>
                 <div class="white">${hairPerCountedGraft.toFixed(2)}</div>
                 <div class="blueLeft">Area:</div>
                 <div class="blueRight">${area}</div>  
                 <div class="blueLeft">Target: </div>
-                <div class="blueRight">${graftsExtractedToReachDonorDesiredCoverageValue}</div>
+                <div class="blueRight">${graftsToExtract}</div>
                 <div class="white">Left: </div>
-                <div class="white">${graftsLeftToReachDonorDesiredCoverageValue}</div>
+                <div class="white">${graftsToExtractLeft}</div>
          
                 `
                 :
                 `<div class="white"><strong>Zone Info</strong></div>
                 <div class="white" ></div>
                 <div class="blueLeft" ><strong>Grafts count: </strong></div>
-                <div class="blueRight"><strong>${grafts}</strong></div>
+                <div class="blueRight"><strong>${graftsCounted}</strong></div>
                 <div class="white">Hairs count:</div>
-                <div class="white">${hairs}</div>
+                <div class="white">${hairsCounted}</div>
                 <div class="blueLeft">Hair per graft:</div>
                 <div class="blueRight">${hairPerCountedGraft.toFixed(2)}</div>
                 <div class="white">Area:</div>
@@ -143,9 +143,9 @@ EventsOn("dataFromBackend", function(data) {
                 <div class="blueLeft"><br></div>
                 <div class="blueRight"></div>       
                 <div class="white">Target: </div>
-                <div class="white">${graftsExtractedToReachDonorDesiredCoverageValue}</div>
+                <div class="white">${graftsToExtract}</div>
                 <div class="blueLeft">Left: </div>
-                <div class="blueRight">${graftsLeftToReachDonorDesiredCoverageValue}</div>
+                <div class="blueRight">${graftsToExtractLeft}</div>
                 <br>
             `;
         });
