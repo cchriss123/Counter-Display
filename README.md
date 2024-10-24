@@ -11,7 +11,7 @@ It is built using the Wails framework for creating desktop applications with Go 
 To run in live development mode, use the following command in the project directory:
 
 Install dependencies 
-[Wails documentation](https://wails.io/docs/).
+[Wails documentation](https://wails.io/docs/gettingstarted/installation).
 
 Start the app
 
