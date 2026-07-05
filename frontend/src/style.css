@@ -113,7 +113,7 @@ body {
 .countRow,
 .summaryRow {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap: 48px;
     padding: 22px 36px;
@@ -124,36 +124,36 @@ body {
 
 /* Typography */
 
-.countLabel {
-    min-width: 180px;
-    text-align: right;
-    font-size: 38px;
-    font-weight: 600;
-    color: #345;
-}
-
-.countValue {
-    min-width: 140px;
-    text-align: left;
-    font-size: 84px;
-    font-weight: 900;
-    color: #0d1b2a;
-}
-
+.countLabel,
 .summaryLabel {
     min-width: 180px;
     text-align: right;
-    font-size: 32px;
     font-weight: 600;
     color: #345;
 }
 
+.countValue,
 .summaryValue {
     min-width: 140px;
     text-align: left;
-    font-size: 64px;
     font-weight: 900;
     color: #0d1b2a;
+}
+
+.countLabel {
+    font-size: 38px;
+}
+
+.countValue {
+    font-size: 84px;
+}
+
+.summaryLabel {
+    font-size: 32px;
+}
+
+.summaryValue {
+    font-size: 64px;
 }
 
 .zoneHeader {
@@ -164,14 +164,17 @@ body {
     color: #0d1b2a;
 }
 
-/* Smaller height / 720p */
-
-/* 720p horizontal only */
+/* 720p landscape */
 
 @media (max-height: 760px) and (min-aspect-ratio: 4/3) {
-
     .displayDataContainer {
         padding: 20px 26px;
+    }
+
+    .innerTopLeft,
+    .innerTopRight {
+        padding: 8px;
+        font-size: 22px;
     }
 
     .section {
@@ -187,48 +190,49 @@ body {
 
     .countRow,
     .summaryRow {
-        padding: 14px 28px;
         gap: 36px;
+        padding: 14px 28px;
     }
 
-    .innerTopLeft,
-    .innerTopRight {
-        font-size: 22px;
-        padding: 8px;
+    .countLabel,
+    .summaryLabel {
+        min-width: 145px;
+    }
+
+    .countValue,
+    .summaryValue {
+        min-width: 110px;
     }
 
     .countLabel {
-        min-width: 145px;
         font-size: 28px;
     }
 
     .countValue {
-        min-width: 110px;
         font-size: 60px;
     }
 
     .summaryLabel {
-        min-width: 145px;
         font-size: 24px;
     }
 
     .summaryValue {
-        min-width: 110px;
         font-size: 46px;
     }
 
     .zoneHeader {
-        font-size: 34px;
         margin-bottom: 14px;
+        font-size: 34px;
     }
 
     .result {
         font-size: 18px;
     }
 }
-/* 1440p horizontal */
 
-@media (min-height: 1200px) and (min-aspect-ratio: 4/3) {
+/* 1440p landscape */
+
+@media (orientation: landscape) and (min-width: 2200px) and (min-height: 1200px) {
     .outerContainer {
         padding: 28px;
     }
@@ -269,9 +273,9 @@ body {
         padding: 32px 52px;
     }
 
-    .countLabel {
+    .countLabel,
+    .summaryLabel {
         min-width: 230px;
-        font-size: 54px;
     }
 
     .countValue {
@@ -279,14 +283,17 @@ body {
         font-size: 120px;
     }
 
-    .summaryLabel {
-        min-width: 230px;
-        font-size: 46px;
-    }
-
     .summaryValue {
         min-width: 190px;
         font-size: 90px;
+    }
+
+    .countLabel {
+        font-size: 54px;
+    }
+
+    .summaryLabel {
+        font-size: 46px;
     }
 
     .zoneHeader {
@@ -296,5 +303,290 @@ body {
 
     .result {
         font-size: 28px;
+    }
+}
+
+/* Portrait */
+
+@media (orientation: portrait) {
+    .outerContainer {
+        height: 100%;
+    }
+
+    .displayDataContainer {
+        padding: 48px 36px;
+    }
+
+    .topContainer,
+    .innerDisplayDataContainer {
+        max-width: none;
+    }
+
+    .topContainer {
+        gap: 18px;
+    }
+
+    .innerTopLeft,
+    .innerTopRight {
+        padding: 16px;
+        font-size: 32px;
+    }
+
+    .section {
+        margin-top: 36px;
+        padding-top: 36px;
+    }
+
+    .graftCountSection {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .countRow {
+        gap: 80px;
+        padding: 42px 60px;
+    }
+
+    .countLabel {
+        min-width: 260px;
+        font-size: 50px;
+    }
+
+    .countValue {
+        min-width: 190px;
+        font-size: 112px;
+    }
+
+    .summaryRow {
+        gap: 28px;
+        padding: 26px 30px;
+    }
+
+    .summaryLabel {
+        min-width: 150px;
+        font-size: 30px;
+    }
+
+    .summaryValue {
+        min-width: 110px;
+        font-size: 62px;
+    }
+
+    .zoneHeader {
+        margin-bottom: 26px;
+        font-size: 50px;
+    }
+}
+
+/* 720p portrait */
+
+@media (orientation: portrait) and (max-width: 760px) {
+    .outerContainer {
+        padding: 16px;
+    }
+
+    .displayDataContainer {
+        padding: 24px 22px;
+        border-radius: 15px;
+    }
+
+    .topContainer {
+        gap: 15px;
+    }
+
+    .innerTopLeft,
+    .innerTopRight {
+        padding: 12px;
+        font-size: 26px;
+        border-radius: 13px;
+    }
+
+    .section {
+        margin-top: 26px;
+        padding-top: 26px;
+    }
+
+    .graftCountSection {
+        gap: 22px;
+    }
+
+    .mainStats,
+    .zoneStats {
+        gap: 20px;
+    }
+
+    .countRow {
+        gap: 38px;
+        padding: 22px 24px;
+        border-radius: 15px;
+    }
+
+    .countLabel {
+        font-size: 48px;
+    }
+
+    .countValue {
+        font-size: 75px;
+    }
+
+    .summaryRow {
+        gap: 16px;
+        padding: 20px 22px;
+        border-radius: 15px;
+    }
+
+    .summaryLabel {
+        min-width: 88px;
+        font-size: 29px;
+    }
+
+    .summaryValue {
+        min-width: 68px;
+        font-size: 50px;
+    }
+
+    .zoneHeader {
+        margin-bottom: 22px;
+        font-size: 50px;
+    }
+
+    .result {
+        font-size: 60px;
+    }
+}
+
+/* 1080p portrait */
+
+@media (orientation: portrait) and (min-width: 900px) and (max-width: 1200px) and (min-height: 1600px) and (max-height: 2199px) {
+    .outerContainer {
+        padding: 24px;
+    }
+
+    .displayDataContainer {
+        padding: 36px 30px;
+        border-radius: 18px;
+    }
+
+    .topContainer {
+        gap: 22px;
+    }
+
+    .innerTopLeft,
+    .innerTopRight {
+        padding: 18px;
+        font-size: 36px;
+        border-radius: 16px;
+    }
+
+    .section {
+        margin-top: 42px;
+        padding-top: 42px;
+    }
+
+    .graftCountSection {
+        gap: 36px;
+    }
+
+    .mainStats,
+    .zoneStats {
+        gap: 28px;
+    }
+
+    .countRow {
+        gap: 58px;
+        padding: 32px 42px;
+        border-radius: 18px;
+    }
+
+    .countLabel {
+        min-width: 210px;
+        font-size: 72px;
+    }
+
+    .countValue {
+        min-width: 150px;
+        font-size: 112px;
+    }
+
+    .summaryRow {
+        gap: 22px;
+        padding: 28px 32px;
+        border-radius: 18px;
+    }
+
+    .summaryLabel {
+        min-width: 120px;
+        font-size: 36px;
+    }
+
+    .summaryValue {
+        min-width: 90px;
+        font-size: 72px;
+    }
+
+    .zoneHeader {
+        margin-bottom: 30px;
+        font-size: 62px;
+    }
+
+    .result {
+        font-size: 78px;
+    }
+}
+
+/* 1440p portrait */
+
+@media (orientation: portrait) and (min-height: 2200px) {
+    .outerContainer {
+        padding: 34px;
+    }
+
+    .innerTopLeft,
+    .innerTopRight {
+        padding: 22px;
+        font-size: 48px;
+    }
+
+    .section {
+        margin-top: 58px;
+        padding-top: 58px;
+    }
+
+    .graftCountSection {
+        gap: 48px;
+    }
+
+    .mainStats,
+    .zoneStats {
+        gap: 38px;
+    }
+
+    .countLabel {
+        font-size: 100px;
+    }
+
+    .countValue {
+        font-size: 150px;
+    }
+
+    .summaryRow {
+        padding: 42px 44px;
+    }
+
+    .summaryLabel {
+        font-size: 46px;
+    }
+
+    .summaryValue {
+        font-size: 96px;
+    }
+
+    .zoneHeader {
+        margin-bottom: 38px;
+        font-size: 74px;
+    }
+
+    .result {
+        font-size: 100px;
     }
 }
