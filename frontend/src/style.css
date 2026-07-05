@@ -205,3 +205,77 @@ body {
         padding: 28px;
     }
 }
+
+@media (min-aspect-ratio: 4/3) {
+    .displayDataContainer {
+        align-items: center;
+    }
+
+    .innerDisplayDataContainer {
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .countRow,
+    .summaryRow {
+        justify-content: center;
+        gap: 48px;
+    }
+
+    .countLabel,
+    .summaryLabel {
+        min-width: 180px;
+        text-align: right;
+    }
+
+    .countValue,
+    .summaryValue {
+        min-width: 140px;
+        text-align: left;
+    }
+    @media (min-aspect-ratio: 4/3) {
+        .displayDataContainer {
+            align-items: center;
+        }
+
+        .topContainer,
+        .innerDisplayDataContainer {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .topContainer {
+            display: flex;
+            gap: 20px;
+        }
+
+        .innerTopLeft {
+            flex: 2;
+            width: auto;
+        }
+
+        .innerTopRight {
+            flex: 1;
+            width: auto;
+        }
+
+        .countRow,
+        .summaryRow {
+            justify-content: center;
+            gap: 48px;
+        }
+
+        .countLabel,
+        .summaryLabel {
+            min-width: 180px;
+            text-align: right;
+        }
+
+        .countValue,
+        .summaryValue {
+            min-width: 140px;
+            text-align: left;
+        }
+    }
+
+}
