@@ -15,7 +15,7 @@ body {
 .outerContainer {
     box-sizing: border-box;
     width: 100%;
-    height: calc(100% - 25px);
+    height: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -106,12 +106,15 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    min-height: 0;
 }
 
 /* Cards */
 
 .countRow,
 .summaryRow {
+    min-width: 0;
+    min-height: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -124,12 +127,17 @@ body {
 
 /* Typography */
 
+  
+
+
 .countLabel,
 .summaryLabel {
     min-width: 180px;
     text-align: right;
     font-weight: 600;
     color: #345;
+    font-size: 50px;
+    
 }
 
 .countValue,
@@ -138,23 +146,9 @@ body {
     text-align: left;
     font-weight: 900;
     color: #0d1b2a;
+    font-size: 75px;
 }
 
-.countLabel {
-    font-size: 38px;
-}
-
-.countValue {
-    font-size: 84px;
-}
-
-.summaryLabel {
-    font-size: 32px;
-}
-
-.summaryValue {
-    font-size: 64px;
-}
 
 .zoneHeader {
     margin-bottom: 25px;
@@ -167,6 +161,8 @@ body {
 /* 720p landscape */
 
 @media (max-height: 760px) and (min-aspect-ratio: 4/3) {
+
+    
     .displayDataContainer {
         padding: 20px 26px;
     }
@@ -197,28 +193,15 @@ body {
     .countLabel,
     .summaryLabel {
         min-width: 145px;
+        font-size: 28px;
     }
 
     .countValue,
     .summaryValue {
         min-width: 110px;
+        font-size: 50px;
     }
 
-    .countLabel {
-        font-size: 28px;
-    }
-
-    .countValue {
-        font-size: 60px;
-    }
-
-    .summaryLabel {
-        font-size: 24px;
-    }
-
-    .summaryValue {
-        font-size: 46px;
-    }
 
     .zoneHeader {
         margin-bottom: 14px;
@@ -275,25 +258,14 @@ body {
 
     .countLabel,
     .summaryLabel {
+        font-size: 50px;
         min-width: 230px;
     }
 
-    .countValue {
-        min-width: 180px;
-        font-size: 120px;
-    }
-
+    .countValue,
     .summaryValue {
-        min-width: 190px;
         font-size: 90px;
-    }
-
-    .countLabel {
-        font-size: 54px;
-    }
-
-    .summaryLabel {
-        font-size: 46px;
+        min-width: 140px;
     }
 
     .zoneHeader {
@@ -422,11 +394,11 @@ body {
     }
 
     .countLabel {
-        font-size: 48px;
+        font-size: 46px;
     }
 
     .countValue {
-        font-size: 75px;
+        font-size: 72px;
     }
 
     .summaryRow {
@@ -436,13 +408,11 @@ body {
     }
 
     .summaryLabel {
-        min-width: 88px;
-        font-size: 29px;
+        font-size: 26px;
     }
 
     .summaryValue {
-        min-width: 68px;
-        font-size: 50px;
+        font-size: 48px;
     }
 
     .zoneHeader {
