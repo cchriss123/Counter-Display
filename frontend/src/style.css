@@ -12,10 +12,6 @@ body {
     height: 100vh;
 }
 
-/* ===========================
-   Layout
-=========================== */
-
 .outerContainer {
     box-sizing: border-box;
     width: 100%;
@@ -35,16 +31,20 @@ body {
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-
     padding: 40px;
-
     display: flex;
     flex-direction: column;
-
+    align-items: center;
     background: white;
     border: 1px solid #d7e4ef;
     border-radius: 14px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.topContainer,
+.innerDisplayDataContainer {
+    width: 100%;
+    max-width: 1200px;
 }
 
 .innerDisplayDataContainer {
@@ -57,9 +57,7 @@ body {
     flex: 1;
 }
 
-/* ===========================
-   Top Bar
-=========================== */
+/* Top Bar */
 
 .topContainer {
     display: flex;
@@ -71,11 +69,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 10px;
-
     font-size: 32px;
-
     background: #e3f2fd;
     border: 1px solid #bbdefb;
     border-radius: 14px;
@@ -83,11 +78,11 @@ body {
 }
 
 .innerTopLeft {
-    width: calc(66.666% - 10px);
+    flex: 2;
 }
 
 .innerTopRight {
-    width: calc(33.333% - 10px);
+    flex: 1;
 }
 
 .result {
@@ -97,9 +92,7 @@ body {
     font-size: 20px;
 }
 
-/* ===========================
-   Sections
-=========================== */
+/* Sections */
 
 .section {
     margin-top: 30px;
@@ -115,46 +108,49 @@ body {
     gap: 24px;
 }
 
-/* ===========================
-   Cards
-=========================== */
+/* Cards */
 
 .countRow,
 .summaryRow {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-
+    gap: 48px;
     padding: 22px 36px;
-
     background: #e3f2fd;
     border: 1px solid #bbdefb;
     border-radius: 18px;
 }
 
-/* ===========================
-   Typography
-=========================== */
+/* Typography */
 
 .countLabel {
+    min-width: 180px;
+    text-align: right;
     font-size: 38px;
     font-weight: 600;
     color: #345;
 }
 
 .countValue {
+    min-width: 140px;
+    text-align: left;
     font-size: 84px;
     font-weight: 900;
     color: #0d1b2a;
 }
 
 .summaryLabel {
+    min-width: 180px;
+    text-align: right;
     font-size: 32px;
     font-weight: 600;
     color: #345;
 }
 
 .summaryValue {
+    min-width: 140px;
+    text-align: left;
     font-size: 64px;
     font-weight: 900;
     color: #0d1b2a;
@@ -162,120 +158,143 @@ body {
 
 .zoneHeader {
     margin-bottom: 25px;
-
     text-align: center;
-
     font-size: 48px;
     font-weight: 600;
     color: #0d1b2a;
 }
 
-/* ===========================
-   Responsive
-=========================== */
+/* Smaller height / 720p */
 
-@media (max-height: 900px) {
+/* 720p horizontal only */
 
-    .innerTopLeft,
-    .innerTopRight {
-        font-size: 24px;
-    }
-
-    .countLabel {
-        font-size: 30px;
-    }
-
-    .countValue {
-        font-size: 64px;
-    }
-
-    .summaryLabel {
-        font-size: 24px;
-    }
-
-    .summaryValue {
-        font-size: 48px;
-    }
-
-    .zoneHeader {
-        font-size: 36px;
-    }
+@media (max-height: 760px) and (min-aspect-ratio: 4/3) {
 
     .displayDataContainer {
-        padding: 28px;
-    }
-}
-
-@media (min-aspect-ratio: 4/3) {
-    .displayDataContainer {
-        align-items: center;
+        padding: 20px 26px;
     }
 
-    .innerDisplayDataContainer {
-        width: 100%;
-        max-width: 1200px;
+    .section {
+        margin-top: 18px;
+        padding-top: 18px;
+    }
+
+    .graftCountSection,
+    .mainStats,
+    .zoneStats {
+        gap: 16px;
     }
 
     .countRow,
     .summaryRow {
-        justify-content: center;
-        gap: 48px;
+        padding: 14px 28px;
+        gap: 36px;
     }
 
-    .countLabel,
+    .innerTopLeft,
+    .innerTopRight {
+        font-size: 22px;
+        padding: 8px;
+    }
+
+    .countLabel {
+        min-width: 145px;
+        font-size: 28px;
+    }
+
+    .countValue {
+        min-width: 110px;
+        font-size: 60px;
+    }
+
     .summaryLabel {
-        min-width: 180px;
-        text-align: right;
+        min-width: 145px;
+        font-size: 24px;
     }
 
-    .countValue,
     .summaryValue {
-        min-width: 140px;
-        text-align: left;
-    }
-    @media (min-aspect-ratio: 4/3) {
-        .displayDataContainer {
-            align-items: center;
-        }
-
-        .topContainer,
-        .innerDisplayDataContainer {
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .topContainer {
-            display: flex;
-            gap: 20px;
-        }
-
-        .innerTopLeft {
-            flex: 2;
-            width: auto;
-        }
-
-        .innerTopRight {
-            flex: 1;
-            width: auto;
-        }
-
-        .countRow,
-        .summaryRow {
-            justify-content: center;
-            gap: 48px;
-        }
-
-        .countLabel,
-        .summaryLabel {
-            min-width: 180px;
-            text-align: right;
-        }
-
-        .countValue,
-        .summaryValue {
-            min-width: 140px;
-            text-align: left;
-        }
+        min-width: 110px;
+        font-size: 46px;
     }
 
+    .zoneHeader {
+        font-size: 34px;
+        margin-bottom: 14px;
+    }
+
+    .result {
+        font-size: 18px;
+    }
+}
+/* 1440p horizontal */
+
+@media (min-height: 1200px) and (min-aspect-ratio: 4/3) {
+    .outerContainer {
+        padding: 28px;
+    }
+
+    .displayDataContainer {
+        padding: 64px;
+    }
+
+    .topContainer,
+    .innerDisplayDataContainer {
+        max-width: 1500px;
+    }
+
+    .topContainer {
+        gap: 28px;
+    }
+
+    .innerTopLeft,
+    .innerTopRight {
+        padding: 16px;
+        font-size: 44px;
+    }
+
+    .section {
+        margin-top: 44px;
+        padding-top: 44px;
+    }
+
+    .graftCountSection,
+    .mainStats,
+    .zoneStats {
+        gap: 34px;
+    }
+
+    .countRow,
+    .summaryRow {
+        gap: 64px;
+        padding: 32px 52px;
+    }
+
+    .countLabel {
+        min-width: 230px;
+        font-size: 54px;
+    }
+
+    .countValue {
+        min-width: 180px;
+        font-size: 120px;
+    }
+
+    .summaryLabel {
+        min-width: 230px;
+        font-size: 46px;
+    }
+
+    .summaryValue {
+        min-width: 190px;
+        font-size: 90px;
+    }
+
+    .zoneHeader {
+        margin-bottom: 34px;
+        font-size: 56px;
+    }
+
+    .result {
+        font-size: 28px;
+    }
 }
