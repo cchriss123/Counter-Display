@@ -4,30 +4,17 @@ import {EventsEmit, EventsOn} from '../wailsjs/runtime';
 
 document.querySelector('#app').innerHTML = `
     <div class="outerContainer">
-        <div class="topContainer">
-            <div class="result">Waiting for data to display...</div>
-        </div>
         <div class="desktop">
-            <div class="leftContainer">
-                <div class="zoneCountContainer">
-
-                    <div class="input"></div>
+            <div class="displayDataContainer">
+                <div class="topContainer">
+                    <div class="result">
+                        Waiting for data to display...
+                    </div>
                 </div>
-                <div class="zoneInfoContainer"></div>
-            </div>
-            <div class="overallInfoContainer"></div>
-        </div>
-        
-        <div class="mobile">
-            <div class="zoneCountContainer">
-                <div class="input"></div>
-            </div>
-            <div class="container">
-                <div class="zoneInfoContainer"></div>
-                <div class="overallInfoContainer"></div>
+
+                <div class="innerDisplayDataContainer"></div>
             </div>
         </div>
-      
     </div>
 `;
 
@@ -49,133 +36,87 @@ EventsOn("dataFromBackend", function(data) {
     console.log(parsedData)
 
     const {
-        donorZone: {
-            name = 'Unknown',
-            singles = 'N/A',
-            doubles = 'N/A',
-            triples = 'N/A',
-            quadruples = 'N/A',
-            graftsCounted = 'N/A',
-            hairsCounted = 'N/A',
-            hairPerCountedGraft = 'N/A',
-            area = 'N/A',
-            graftsToExtract = 'N/A',
-            graftsToExtractLeft = 'N/A'
-        } = {},
+        mode = 'simple',
+        zoneName = 'N/A',
+        currentZoneGrafts = 'N/A',
+        currentZoneTarget = 'N/A',
         totalSingles = 'N/A',
         totalDoubles = 'N/A',
         totalTriples = 'N/A',
         totalQuadruples = 'N/A',
         totalGrafts = 'N/A',
-        totalHair = 'N/A',
-        totalHairPerGraftsCounted = 'N/A'
+        totalHairPerFu = 'N/A',
     } = parsedData;
 
-    activeName = name;
-    updateTimer();
+    const formattedHairPerFu = totalHairPerFu !== 'N/A'
+        ? Number(totalHairPerFu).toFixed(2)
+        : 'N/A';
 
-
-    document.querySelectorAll('.zoneCountContainer').forEach(resultElement => {
+    document.querySelectorAll('.innerDisplayDataContainer').forEach(resultElement => {
         resultElement.innerHTML = `
 
-            <div class="innerZoneCountContainerWide">
-                    <div class="activeZone">${activeName}</div>
+<div class="section">
+    <div class="graftCountSection">
+        <div class="countRow">
+            <div class="countLabel">Singles</div>
+            <div class="countValue">${totalSingles}</div>
+        </div>
+
+        <div class="countRow">
+            <div class="countLabel">Doubles</div>
+            <div class="countValue">${totalDoubles}</div>
+        </div>
+
+        <div class="countRow">
+            <div class="countLabel">Triples</div>
+            <div class="countValue">${totalTriples}</div>
+        </div>
+
+        <div class="countRow">
+            <div class="countLabel">Quads</div>
+            <div class="countValue">${totalQuadruples}</div>
+        </div>
+    </div>
+     </div>
+    
+
+    <div class="section">
+        <div class="mainStats">
+            <div class="summaryRow">
+                <div class="summaryLabel">Grafts</div>
+                <div class="summaryValue">${totalGrafts}</div>
             </div>
 
-            <div class="innerZoneCountContainer">
-            
-                <div class="zoneKey">Singles</div>
-                <div class="zoneValue">${singles}</div>
+            <div class="summaryRow">
+                <div class="summaryLabel">Hair / FU</div>
+                <div class="summaryValue">${formattedHairPerFu}</div>
             </div>
-            <div class="innerZoneCountContainer">
-                <div class="zoneKey">Doubles</div>
-                <div class="zoneValue">${doubles}</div>
+        </div>
+    </div>
+
+    ${mode === 'zoned' ? `
+        <div class="section">
+            <div class="zoneHeader">${zoneName}</div>
+
+            <div class="zoneStats">
+                <div class="summaryRow">
+                    <div class="summaryLabel">Zone Grafts</div>
+                    <div class="summaryValue">${currentZoneGrafts}</div>
+                </div>
+
+                <div class="summaryRow">
+                    <div class="summaryLabel">Target</div>
+                    <div class="summaryValue">${currentZoneTarget}</div>
+                </div>
             </div>
-            <div class="innerZoneCountContainer">
-                <div class="zoneKey">Triples</div>
-                <div class="zoneValue">${triples}</div>       
-            </div>
-            <div class="innerZoneCountContainer">
-                <div class="zoneKey">Quads</div>
-                <div class="zoneValue">${quadruples}</div>  
-            </div>
-        `;
+        </div>
+    ` : ''}
+
+    <div class="spacer"></div>
+`;
     });
 
-    updateZoneInfo();
-    window.addEventListener('resize', updateZoneInfo);
-
-    function updateZoneInfo() {
-        document.querySelectorAll('.zoneInfoContainer').forEach(resultElement => {
-            const isWideScreen = window.innerWidth > 1300;
-            resultElement.innerHTML = isWideScreen
-                ?
-                `
-                <div class="white"><strong>Zone Info</strong></div>
-                <div class="white"></div>
-                <div></div>
-                <div><br></div>
-                <div class="blueLeft">Grafts count: </div>
-                <div class="blueRight">${graftsCounted}</div>
-                <div class="white">Hairs count:</div>
-                <div class="white">${hairsCounted}</div>
-                <div class="white">Hair per graft:</div>
-                <div class="white">${hairPerCountedGraft.toFixed(2)}</div>
-                <div class="blueLeft">Area:</div>
-                <div class="blueRight">${area}</div>  
-                <div class="blueLeft">Target: </div>
-                <div class="blueRight">${graftsToExtract}</div>
-                <div class="white">Left: </div>
-                <div class="white">${graftsToExtractLeft}</div>
-         
-                `
-                :
-                `<div class="white"><strong>Zone Info</strong></div>
-                <div class="white" ></div>
-                <div class="blueLeft" ><strong>Grafts count: </strong></div>
-                <div class="blueRight"><strong>${graftsCounted}</strong></div>
-                <div class="white">Hairs count:</div>
-                <div class="white">${hairsCounted}</div>
-                <div class="blueLeft">Hair per graft:</div>
-                <div class="blueRight">${hairPerCountedGraft.toFixed(2)}</div>
-                <div class="white">Area:</div>
-                <div class="white">${area}</div>
-                <div class="blueLeft"><br></div>
-                <div class="blueRight"></div>       
-                <div class="white">Target: </div>
-                <div class="white">${graftsToExtract}</div>
-                <div class="blueLeft">Left: </div>
-                <div class="blueRight">${graftsToExtractLeft}</div>
-                <br>
-            `;
-        });
-    }
-
-    document.querySelectorAll('.overallInfoContainer').forEach(resultElement => {
-        resultElement.innerHTML = `
-            <div class="white"><strong>Overall Info</strong></div>
-            <div class="white"></div>
-            
-            <div class="blueLeft"><strong>Total grafts: </strong></div>
-            <div class="blueRight"><strong>${totalGrafts}</strong></div>
-            <div class="white">Total hair: </div>
-            <div class="white">${totalHair}</div>
-            <div class="blueLeft">Hair per graft: </div>
-            <div class="blueRight">${totalHairPerGraftsCounted.toFixed(2)}</div>
-
-            <div class="white"><br></div>
-            <div class="white"></div>
-            
-            <div class="blueLeft">Total singles: </div>
-            <div class="blueRight">${totalSingles}</div>
-            <div class="white">Total doubles: </div>
-            <div class="white">${totalDoubles}</div>
-            <div class="blueLeft">Total triples: </div>
-            <div class="blueRight">${totalTriples}</div>
-            <div class="white">Total quads: </div>
-            <div class="white">${totalQuadruples}</div>
-        `;
-    });
+    // updateZoneInfo();
 
     function updateTimer() {
         document.querySelector('.topContainer').innerHTML = `
