@@ -1,8 +1,12 @@
+/* ==========================================================
+   Base layout
+   ========================================================== */
+
 html,
 body {
     margin: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background: #f4f8fc;
 }
@@ -23,7 +27,6 @@ body {
 
 .desktop {
     width: 100%;
-    height: 100%;
     min-height: 0;
     display: flex;
     flex: 1;
@@ -59,7 +62,10 @@ body {
     flex: 1;
 }
 
-/* Top Bar */
+
+/* ==========================================================
+   Top bar
+   ========================================================== */
 
 .topContainer {
     display: flex;
@@ -94,7 +100,10 @@ body {
     font-size: 20px;
 }
 
-/* Sections */
+
+/* ==========================================================
+   Sections and grids
+   ========================================================== */
 
 .section {
     margin-top: 30px;
@@ -111,10 +120,14 @@ body {
     min-height: 0;
 }
 
-/* Cards */
+
+/* ==========================================================
+   Cards
+   ========================================================== */
 
 .countRow,
 .summaryRow {
+    box-sizing: border-box;
     min-width: 0;
     min-height: 0;
     display: flex;
@@ -127,10 +140,17 @@ body {
     border-radius: 18px;
 }
 
-/* Typography */
+.countLabel,
+.summaryLabel,
+.countValue,
+.summaryValue {
+    box-sizing: border-box;
+}
 
-  
 
+/* ==========================================================
+   Typography
+   ========================================================== */
 
 .countLabel,
 .summaryLabel {
@@ -139,7 +159,6 @@ body {
     font-weight: 600;
     color: #345;
     font-size: 50px;
-    
 }
 
 .countValue,
@@ -151,7 +170,6 @@ body {
     font-size: 75px;
 }
 
-
 .zoneHeader {
     margin-bottom: 25px;
     text-align: center;
@@ -160,11 +178,13 @@ body {
     color: #0d1b2a;
 }
 
-/* 720p landscape */
+/* ==========================================================
+   Landscape: compact height / 720p fallback
+   Compact layout for all landscape windows up to 760px high.
+   Prioritizes fitting over appearance.
+   ========================================================== */
 
-@media (max-height: 760px) and (min-aspect-ratio: 4/3) {
-
-    
+@media (orientation: landscape) and (max-height: 760px) {
     .displayDataContainer {
         padding: 20px 26px;
     }
@@ -172,7 +192,7 @@ body {
     .innerTopLeft,
     .innerTopRight {
         padding: 8px;
-        font-size: 22px;
+        font-size: 18px;
     }
 
     .section {
@@ -188,26 +208,55 @@ body {
 
     .countRow,
     .summaryRow {
-        gap: 36px;
-        padding: 14px 28px;
+        gap: 14px;
+        padding: 10px 14px;
     }
 
     .countLabel,
     .summaryLabel {
-        min-width: 145px;
-        font-size: 28px;
+        min-width: 0;
+        font-size: 18px;
     }
 
     .countValue,
     .summaryValue {
-        min-width: 110px;
-        font-size: 50px;
+        min-width: 0;
+        font-size: 30px;
     }
-
 
     .zoneHeader {
         margin-bottom: 14px;
-        font-size: 34px;
+        font-size: 28px;
+    }
+
+    .result {
+        font-size: 16px;
+    }
+}
+
+/* ==========================================================
+   Landscape: intermediate heights
+   These only scale text, not layout.
+   ========================================================== */
+
+@media (orientation: landscape) and (min-height: 761px) and (max-height: 840px) {
+    .innerTopLeft,
+    .innerTopRight {
+        font-size: 26px;
+    }
+
+    .countLabel,
+    .summaryLabel {
+        font-size: 40px;
+    }
+
+    .countValue,
+    .summaryValue {
+        font-size: 62px;
+    }
+
+    .zoneHeader {
+        font-size: 42px;
     }
 
     .result {
@@ -215,7 +264,113 @@ body {
     }
 }
 
-/* 1440p landscape */
+@media (orientation: landscape) and (min-height: 841px) and (max-height: 940px) {
+    .innerTopLeft,
+    .innerTopRight {
+        font-size: 28px;
+    }
+
+    .countLabel,
+    .summaryLabel {
+        font-size: 44px;
+    }
+
+    .countValue,
+    .summaryValue {
+        font-size: 68px;
+    }
+
+    .zoneHeader {
+        font-size: 44px;
+    }
+
+    .result {
+        font-size: 20px;
+    }
+}
+
+@media (orientation: landscape) and (min-height: 941px) and (max-height: 1040px) {
+    .innerTopLeft,
+    .innerTopRight {
+        font-size: 30px;
+    }
+
+    .countLabel,
+    .summaryLabel {
+        font-size: 46px;
+    }
+
+    .countValue,
+    .summaryValue {
+        font-size: 72px;
+    }
+
+    .zoneHeader {
+        font-size: 46px;
+    }
+
+    .result {
+        font-size: 20px;
+    }
+}
+
+
+/* ==========================================================
+   Landscape: narrow but tall fallback
+   Switches to one-column mode so the app can grow/scroll.
+   Covers cases like 960x892.
+   Does not affect 1024x768 or wider standard landscape.
+   ========================================================== */
+
+@media (orientation: landscape) and (max-width: 1000px) and (min-height: 761px) {
+    .topContainer,
+    .innerDisplayDataContainer {
+        max-width: none;
+    }
+
+    .graftCountSection,
+    .mainStats,
+    .zoneStats {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .countRow,
+    .summaryRow {
+        gap: 22px;
+        padding: 18px 24px;
+    }
+
+    .countLabel,
+    .summaryLabel {
+        min-width: 0;
+        font-size: 32px;
+    }
+
+    .countValue,
+    .summaryValue {
+        min-width: 0;
+        font-size: 52px;
+    }
+
+    .innerTopLeft,
+    .innerTopRight {
+        font-size: 24px;
+    }
+
+    .zoneHeader {
+        font-size: 38px;
+    }
+
+    .result {
+        font-size: 20px;
+    }
+}
+
+
+/* ==========================================================
+   Landscape: 1440p and larger
+   ========================================================== */
 
 @media (orientation: landscape) and (min-width: 2200px) and (min-height: 1200px) {
     .outerContainer {
@@ -260,14 +415,14 @@ body {
 
     .countLabel,
     .summaryLabel {
-        font-size: 50px;
         min-width: 230px;
+        font-size: 50px;
     }
 
     .countValue,
     .summaryValue {
-        font-size: 90px;
         min-width: 140px;
+        font-size: 90px;
     }
 
     .zoneHeader {
@@ -280,13 +435,12 @@ body {
     }
 }
 
-/* Portrait */
+
+/* ==========================================================
+   Portrait: base layout
+   ========================================================== */
 
 @media (orientation: portrait) {
-    .outerContainer {
-        height: 100%;
-    }
-
     .displayDataContainer {
         padding: 48px 36px;
     }
@@ -352,7 +506,11 @@ body {
     }
 }
 
-/* 720p portrait */
+
+/* ==========================================================
+   Portrait: small width / 720p style
+   Covers cases like 614x750.
+   ========================================================== */
 
 @media (orientation: portrait) and (max-width: 760px) {
     .outerContainer {
@@ -396,10 +554,12 @@ body {
     }
 
     .countLabel {
+        min-width: 0;
         font-size: 46px;
     }
 
     .countValue {
+        min-width: 0;
         font-size: 72px;
     }
 
@@ -410,10 +570,12 @@ body {
     }
 
     .summaryLabel {
+        min-width: 0;
         font-size: 26px;
     }
 
     .summaryValue {
+        min-width: 0;
         font-size: 48px;
     }
 
@@ -427,7 +589,97 @@ body {
     }
 }
 
-/* 1080p portrait */
+
+/* ==========================================================
+   Portrait: tiny width fallback
+   Prioritizes fitting over appearance.
+   ========================================================== */
+
+@media (orientation: portrait) and (max-width: 1040px) {
+    .innerTopLeft,
+    .innerTopRight {
+        font-size: 16px;
+    }
+
+    .countRow,
+    .summaryRow {
+        gap: 12px;
+        padding: 14px 16px;
+    }
+
+    .countLabel {
+        min-width: 0;
+        font-size: 24px;
+    }
+
+    .countValue {
+        min-width: 0;
+        font-size: 40px;
+    }
+
+    .summaryLabel {
+        min-width: 0;
+        font-size: 16px;
+    }
+
+    .summaryValue {
+        min-width: 0;
+        font-size: 28px;
+    }
+
+    .zoneHeader {
+        font-size: 26px;
+    }
+
+    .result {
+        font-size: 28px;
+    }
+}
+
+
+/* ==========================================================
+   Portrait: intermediate widths
+   These only scale text, not layout.
+   ========================================================== */
+
+
+
+@media (orientation: portrait) and (min-width: 941px) and (max-width: 1040px) {
+    .innerTopLeft,
+    .innerTopRight {
+        font-size: 30px;
+    }
+
+    .countLabel {
+        font-size: 62px;
+    }
+
+    .countValue {
+        font-size: 96px;
+    }
+
+    .summaryLabel {
+        font-size: 32px;
+    }
+
+    .summaryValue {
+        font-size: 62px;
+    }
+
+    .zoneHeader {
+        font-size: 56px;
+    }
+
+    .result {
+        font-size: 70px;
+    }
+}
+
+
+
+/* ==========================================================
+   Portrait: 1080p height range
+   ========================================================== */
 
 @media (orientation: portrait) and (min-width: 900px) and (max-width: 1200px) and (min-height: 1600px) and (max-height: 2199px) {
     .outerContainer {
@@ -506,7 +758,10 @@ body {
     }
 }
 
-/* 1440p portrait */
+
+/* ==========================================================
+   Portrait: 1440p and larger
+   ========================================================== */
 
 @media (orientation: portrait) and (min-height: 2200px) {
     .outerContainer {
